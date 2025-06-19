@@ -22,8 +22,8 @@ loadProgress();
 
 // 用環境變數帶 LINE Token & Secret
 const config = {
-  channelAccessToken: 'process.env.LINE_CHANNEL_ACCESS_TOKEN',
-  channelSecret: 'process.env.LINE_CHANNEL_SECRET'
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET
 };
 
 const client = new line.Client(config);
@@ -175,5 +175,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}`);
 });
-
+app.get('/', (req, res) => res.send('Muzi Line Bot is running.'));
+app.get('/favicon.ico', (req, res) => res.status(204).end());
   module.exports = app;
