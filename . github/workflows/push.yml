@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Daily Push API
         run: |
+      -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}'
+      -H 'Content-Type:application/json'  
           curl -X GET line-bot-vercel-five.vercel.app/api/push
 name: Daily Push Quote
 
@@ -25,4 +27,6 @@ jobs:
     steps:
       - name: Daily Push API
         run: |
+      -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}'
+      -H 'Content-Type:application/json'    
           curl -X GET line-bot-vercel-five.vercel.app/api/push
