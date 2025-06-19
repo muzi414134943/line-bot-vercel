@@ -31,12 +31,17 @@ const app = express();
 
 // Webhook 路徑（用於處理使用者訊息）
 app.post('/webhook', line.middleware(config), (req, res) => {
-  Promise.all(req.body.events.map(handleEvent))
-    .then(result => res.json(result))
-    .catch(err => {
+  Promise.all(req.body.events.map(event =>
+    handleEvent(event).catch(err => {
       console.error(err);
-      res.status(500).end();
-    });
+      return Promise.resolve(null); // 事件錯誤也不讓整個 webhook 崩潰
+    })
+  ))
+  .then(result => res.status(200).json(result))
+  .catch(err => {
+    console.error('Unexpected Error:', err);
+    res.status(200).send('OK'); // 保底仍然 200
+  });
 });
 
 // 抽卡邏輯
