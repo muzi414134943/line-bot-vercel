@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Daily Push API
         run: |
-          curl -X GET line-bot-vercel-lyart.vercel.app/api/push
+          curl -X GET line-bot-vercel-five.vercel.app/api/push
 name: Daily Push Quote
 
 on:
@@ -25,4 +25,4 @@ jobs:
     steps:
       - name: Daily Push API
         run: |
-          curl -X GET line-bot-vercel-lyart.vercel.app/api/push
+          curl -X GET line-bot-vercel-five.vercel.app/api/push
