@@ -30,7 +30,7 @@ const client = new line.Client(config);
 const app = express();
 
 // Webhook 路徑（用於處理使用者訊息）
-app.post('/webhook', line.middleware(config), (req, res) => {
+app.post('/webhook', line.middleware(config), (req, res) => {Add commentMore actions
   Promise.all(req.body.events.map(event =>
     handleEvent(event).catch(err => {
       console.error(err);
